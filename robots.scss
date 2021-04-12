@@ -1,0 +1,89 @@
+.chat-icon {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;
+    width: 3rem;
+    background: mediumspringgreen;
+    color: #fff;
+    border-radius: 20px;
+    padding: .5rem;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+.chat-box {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;
+    width: 25rem;
+    height: 90%;
+    background: #999;
+    @media only screen and (max-width: 760px) {
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .title {
+        height: 3rem;
+        background: #444;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        .customer-name {
+            height: 3rem;
+            line-height: 3rem;
+            float: left;
+            margin-left: 1.5rem;
+        }
+        .close-icon {
+            float: right;
+            height: 3rem;
+            line-height: 3rem;
+            margin-right: .5rem;
+        }
+    }
+    .chat-data {
+        position: absolute;
+        top: 3rem;
+        bottom: 3rem;
+        width: 100%;
+        overflow-x: auto;
+    }
+    .input-data {
+        position: absolute;
+        bottom: 0;
+        height: 3rem;
+        background: green;
+        width: 100%;
+        .input {
+            width: 85%;
+            height: 100%;
+            text-indent: 8px;
+            font-size: 1rem;
+            border: 2px solid #000;
+            border-radius: 3px;
+            outline: none;
+            padding: 0;
+            float: left;
+        }
+        .icon {
+            background: #fff;
+            height: 100%;
+            width: 15%;
+            float: left;
+            line-height: 3rem;
+            text-align: center;
+        }
+        &::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+    }
+}
