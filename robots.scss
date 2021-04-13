@@ -54,6 +54,20 @@
         bottom: 3rem;
         width: 100%;
         overflow-x: auto;
+        padding: 1rem 0;
+        .chat-left {
+            padding: .5rem 0;
+            span {
+                padding: 1rem;
+                background: #fff;
+            }
+            text-align: right;
+            &::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
     }
     .input-data {
         position: absolute;

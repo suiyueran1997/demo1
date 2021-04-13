@@ -48,7 +48,18 @@
     top: 3rem;
     bottom: 3rem;
     width: 100%;
-    overflow-x: auto; }
+    overflow-x: auto;
+    padding: 1rem 0; }
+    .chat-box .chat-data .chat-left {
+      padding: .5rem 0;
+      text-align: right; }
+      .chat-box .chat-data .chat-left span {
+        padding: 1rem;
+        background: #fff; }
+      .chat-box .chat-data .chat-left::after {
+        content: "";
+        display: block;
+        clear: both; }
   .chat-box .input-data {
     position: absolute;
     bottom: 0;
