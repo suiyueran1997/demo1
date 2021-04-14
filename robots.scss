@@ -1,12 +1,32 @@
-.chat-icon {
+.chat {
     position: fixed;
     right: 1.5rem;
     bottom: 2rem;
     width: 3rem;
-    background: mediumspringgreen;
-    color: #fff;
-    border-radius: 20px;
-    padding: .5rem;
+    .chat-icon {
+        background: mediumspringgreen;
+        color: #fff;
+        border-radius: 20px;
+        padding: .5rem;
+    }
+    .number {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+        transform-origin: 100% 0;
+        background: #ff4d4f;
+        color: #fff;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 400;
+        min-width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #fff;
+    }
 }
 
 *,
