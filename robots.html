@@ -18,75 +18,81 @@
 <link rel="stylesheet" href="css/robots.css">
 
 <body>
-    <div class="chat-icon" click="displayChatBox()">
+    <div class="chat-icon" id="chat-icon">
         Q
     </div>
-    <div class="chat-box">
+    <div class="chat-box" id="chat-list" style="display:none">
         <div class="title">
             <span class="customer-name">
-                Robots
+                <span class="status" id="status"></span>正在输入中...
             </span>
-            <span class="close-icon">
-                
+            <span class="close-icon" id="closeChat">
+                x
             </span>
         </div>
         <div class="chat-data">
-            <div class="chat-left"><span>123123</span>
+            <div class="chat-data-box chat-right"><span>123123</span>
             </div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
-            <div>123123</div>
+            <div class="chat-data-box chat-left"><span>123123</span>
+            </div>
+            <div class="chat-data-box chat-right"><span>123123</span>
+            </div>
+
+
         </div>
         <div class="input-data">
-            <input type="text" class="input" placeholder="您有什么问题？
-            ">
-            <span class="icon">Send</span>
+            <input type="text" class="input" id="input-question" placeholder="您有什么问题？">
+            <button class="icon" id="send">Send</button>
         </div>
 
     </div>
 </body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    $(function() {
+        $('#chat-icon').click(function() {
+            console.log(123)
+            let chat_list = $('#chat-list');
+
+            chat_list.toggle();
+            $('#chat-icon').toggle();
+        });
+        $('#closeChat').click(function() {
+            $('#chat-icon').show();
+            $('#chat-list').hide();
+        });
+        $('#send').click(function() {
+            let data = $('#input-question').val();
+            send(data);
+            $('#input-question').val('')
+        })
+
+        function send(data) {
+            let dataHtml = `<div class="chat-data-box chat-right"><span>${data}</span></div>`
+            let item_data = $('.chat-data');
+            item_data.append(dataHtml);
+        }
+
+        document.onkeyup = function(e) {
+            var event = e || window.event;
+            var key = event.which || event.keyCode || event.charCode;
+            if (key == 13) {
+                let data = $('#input-question').val();
+                send(data);
+                $('#input-question').val('')
+            }
+        };
+    })
+    if (window.Notification && Notification.permission !== "granted") {
+        Notification.requestPermission(function(status) {
+            if (Notification.permission !== status) {
+                Notification.permission = status;
+            }
+        });
+    }
+    if (window.Notification && Notification.permission === "granted") {
+        // var n = new Notification("Hi!");
+    }
 </script>
 
 </html>
