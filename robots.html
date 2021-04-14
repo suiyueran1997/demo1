@@ -77,6 +77,31 @@
             item_data.append(dataHtml);
         }
 
+        function outData(data) {
+            try {
+
+                var notification = new Notification(data, {
+                    dir: 'ltr',
+                    body: data,
+                    // icon: icon,
+                    requireInteraction: false,
+                })
+                notification.onclick = function() {
+                    //  window.focus 可以定位到有消息的窗口
+                    window.focus();
+                    // 关闭通知
+                    notification.close();
+                };
+            } catch (err) {
+                alert(err)
+            }
+            let dataHtml = `<div class="chat-data-box chat-left"><span>${data}</span></div>`
+            let item_data = $('.chat-data');
+            item_data.append(dataHtml);
+        }
+
+
+
         document.onkeyup = function(e) {
             var event = e || window.event;
             var key = event.which || event.keyCode || event.charCode;
@@ -86,7 +111,9 @@
                 $('#input-question').val('')
             }
         };
+
     })
+
     if (window.Notification && Notification.permission !== "granted") {
         Notification.requestPermission(function(status) {
             if (Notification.permission !== status) {

@@ -95,15 +95,22 @@
                 display: inline-block;
                 border-radius: .8rem;
                 color: #444;
+                text-align: left;
             }
         }
         .chat-left {
             margin-left: 1rem;
             text-align: left;
+            margin-right: 3rem;
         }
         .chat-right {
             margin-right: 1rem;
             text-align: right;
+            margin-left: 3rem;
+            span {
+                background: #007aff;
+                color: #fff;
+            }
         }
     }
     .input-data {
