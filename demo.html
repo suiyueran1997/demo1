@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Document</title>
+</head>
+<style>
+    .demo1 {
+        display: none;
+    }
+    
+    li {
+        border: 1px solid #000;
+    }
+    
+    .children {
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="demo2">
+        <ul>
+            <li id="1">1</li>
+            <div class="children">
+                <ul>
+                    <li>1.1</li>
+                    <li>1.2</li>
+                </ul>
+            </div>
+            <li id="2">2</li>
+            <div class="children">2.2</div>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(function() {
+        $('li').click(function() {
+            if ($(this).next().get(0) && ($(this).next().get(0).tagName === 'DIV')) {
+                $(this).next().toggle();
+            }
+        })
+
+
+
+    })
+</script>
+
+</html>
