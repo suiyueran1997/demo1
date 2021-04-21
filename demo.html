@@ -9,44 +9,110 @@
     <title>Document</title>
 </head>
 <style>
-    .demo1 {
-        display: none;
+    body,
+    html {
+        margin: 0;
+        padding: 0
     }
     
     li {
-        border: 1px solid #000;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
     
     .children {
         display: none;
     }
+    
+    .demo2 {
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .45);
+        transition: transform .3s cubic-bezier(.7, .3, .1, 1);
+    }
+    
+    button {
+        background: #fff;
+        border: 0;
+        padding: 10px;
+    }
+    
+    .menu {
+        width: 300px;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        top: 0;
+        background: #fff;
+        transition: transform .3s cubic-bezier(.7, .3, .1, 1), box-shadow .3s cubic-bezier(.7, .3, .1, 1);
+    }
+    
+    .transform {
+        transform: translateX(100%);
+        -moz-box-shadow: -2px 2px 5px #A6A6A6;
+        -webkit-box-shadow: -2px 2px 5px #A6A6A6;
+        box-shadow: -2px 2px 5px #A6A6A6;
+    }
+    
+    .menu-header {
+        padding: 14px 20px;
+        border-bottom: 1px solid #ddd;
+    }
 </style>
 
 <body>
     <div class="demo2">
-        <ul>
-            <li id="1">1</li>
-            <div class="children">
-                <ul>
-                    <li>1.1</li>
-                    <li>1.2</li>
-                </ul>
+        <button id="menu">z</button>
+        <div class="menu transform">
+            <div class="menu-header">
+                demo
             </div>
-            <li id="2">2</li>
-            <div class="children">2.2</div>
-            <li>3</li>
-            <li>4</li>
-        </ul>
+            <ul>
+                <li id="1">1</li>
+                <div class="children">
+                    <ul>
+                        <li>1.1</li>
+                        <li>1.2</li>
+                    </ul>
+                </div>
+                <li id="2">2</li>
+                <div class="children">2.2</div>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+
     </div>
 
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(function() {
+
         $('li').click(function() {
             if ($(this).next().get(0) && ($(this).next().get(0).tagName === 'DIV')) {
                 $(this).next().toggle();
             }
+        })
+        let menu = true;
+        $('#menu').click(function() {
+
+            if (menu) {
+                $('.menu').removeClass('transform');
+            } else {
+                $('.menu').addClass('transform');
+            }
+            menu = !menu;
         })
 
 
