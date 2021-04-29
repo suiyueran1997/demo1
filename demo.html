@@ -95,13 +95,6 @@
 
 <body>
     <div class="main">
-        <span id="up">
-            up
-        </span>
-        <span id="down">
-            down
-        </span>
-        <input type="text" value="1" id="number" min="1" max="99">
         <button id="menu-button">z</button>
         <div class="drawer close" style="display: none;">
             <div class="drawer-body transform" id="menu" onclick="window.event? window.event.cancelBubble = true : e.stopPropagation();">
@@ -130,24 +123,6 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(function() {
-        $('#up').click(function (){
-            let number = parseInt($('#number').val());
-            let max = parseInt($('#number').attr('max'));
-            if(number+1 <= max){
-                $('#number').attr('value',number + 1)
-            }
-
-        })
-        $('#down').click(function (){
-            var number = parseInt($('#number').val());
-            let min = parseInt($('#number').attr('min'));
-            if(number - 1 >= min){
-                $('#number').attr('value',number - 1)
-            }
-
-
-            console.log()
-        })
         $('.children').css({
             "height": 0,
             "overflow": "hidden"
