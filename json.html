@@ -7,59 +7,84 @@
     <link href="css/paper.css" rel="stylesheet">
 </head>
 <style>
-  *, :after, :before {
-    box-sizing: border-box;
-  }
-  .main{
-    height: 100vh;
-    width: 100%;
-      overflow: hidden;
-  }
-  .input-json{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-      flex-direction: column;
-  }
-  .input-text{
-    height: 70%;
-    width: 70%;
-  }
-  .input-convert{
-    background: transparent;
-    border: 1px solid #333;
-    padding: .8rem .5rem;
-      margin-top: 1rem;
-  }
-  .output{
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
+    .main {
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .input-json {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .input-text {
+        height: 70%;
+        width: 70%;
+    }
+
+    .input-convert {
+        background: transparent;
+        border: 1px solid #333;
+        padding: .8rem .5rem;
+        margin-top: 1rem;
+    }
+
+    .output {
+        width: 100%;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 <body>
-    <div class="main">
-      <div class="input-json">
+<div class="main">
+    <div class="input-json">
         <textarea class="input-text" id="input-json"></textarea>
-          <div><button id="convert" class="input-convert">转 换</button></div>
-      </div>
+        <div>
+            <button id="convert" class="input-convert">转 换</button>
+        </div>
     </div>
+</div>
 </body>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 <script>
-  $(function (){
-    $('#convert').click(function (){
-      let jsonObj = $('#input-json').val();
-      jsonObj = jsonObj.replace(/↵/g,'')
-      jsonObj =  JSON.parse(jsonObj)
-      const json = JSON.stringify(jsonObj, null, 4);
-        $('#input-json').val(json)
+    $(function () {
+        $('#convert').click(function () {
+            let jsonObj = _.trim($('#input-json').val());
+            jsonObj = jsonObj.replace(/↵/g, '')
+            forStr(jsonObj);
+            if (!checkInitialFormat(jsonObj)) {
+                console.log('初始格式不正确');
+                return;
+            }
+            jsonObj = JSON.parse(jsonObj)
+            const json = JSON.stringify(jsonObj, null, 4);
+            $('#input-json').val(json)
+        })
 
+        function checkInitialFormat(str) {
+            if (_.endsWith(str, '}') && _.startsWith(str, '{')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function forStr(str = ''){
+            for(let i = 0;i<str.length;i++){
+                console.log(str.charAt(i))
+            }
+        }
     })
-  })
 </script>
 </html>
