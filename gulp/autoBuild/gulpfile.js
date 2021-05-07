@@ -6,9 +6,15 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     del = require('del');
     Vinyl = require('vinyl');
+    gulpif = require('gulp-if');
 
 
-
+var condition = function (f) {
+    if (f.path.endswith('.min.js')) {
+        return false;
+    }
+    return true;
+};
 gulp.task('scss', function() {
     return gulp.src('public/static/css/**/*.scss')
         .pipe(sass())
@@ -18,7 +24,7 @@ gulp.task('scss', function() {
 gulp.task('js', function() {
     return gulp.src('public/static/js/**/*.js')
         .pipe(stripDebug())
-        .pipe(uglify({ mangle: {except: ['require' ,'exports' ,'module' ,'$']}, compress: true }))
+        .pipe(gulpif(condition, uglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}})))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/static/js'));
 });
