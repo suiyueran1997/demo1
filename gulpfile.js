@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 
 
 var condition = function (f) {
+    console.log(f.path.endsWith('.min.js'));
     if (f.path.endsWith('.min.js')) {
         return false;
     }
@@ -24,14 +25,13 @@ gulp.task('scss', function() {
 gulp.task('js', function() {
     return gulp.src('public/static/js/**/*.js')
         .pipe(stripDebug())
-        .pipe(gulpif(condition, uglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}})))
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulpif(condition, uglify({mangle: {reserved: ['require' ,'exports' ,'module' ,'$']}})))
         .pipe(gulp.dest('public/static/js'));
 });
 gulp.task('clean:js', async() => {
     await del([
         'public/static/css/**/*.scss',
-        'public/static/js/**/*.js',
+        '!public/static/js/**/*.js',
         '!public/static/js/**/*.min.js'
     ]);
 
