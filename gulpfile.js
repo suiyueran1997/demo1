@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     stripDebug = require('gulp-strip-debug'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
     del = require('del');
     Vinyl = require('vinyl');
     gulpif = require('gulp-if');
