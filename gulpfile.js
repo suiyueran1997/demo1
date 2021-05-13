@@ -6,28 +6,39 @@ var gulp = require('gulp'),
     del = require('del');
     Vinyl = require('vinyl');
     gulpif = require('gulp-if');
+    rev = require('gulp-rev');
+    revCollector = require('gulp-rev-collector');
+    lazypipe = require('lazypipe');
 
 
 var condition = function (f) {
-    console.log(f.path.endsWith('.min.js'));
     if (f.path.endsWith('.min.js')) {
         return false;
     }
     return true;
 };
-gulp.task('scss', function() {
+var uglifyJS = lazypipe()
+    .pipe()
+    .pipe();
+gulp.task('scss', function () {
     return gulp.src('public/static/css/**/*.scss')
         .pipe(sass())
         .pipe(minifyCSS())
         .pipe(gulp.dest('public/static/css'));
 });
-gulp.task('js', function() {
+
+gulp.task('js', function () {
     return gulp.src('public/static/js/**/*.js')
         .pipe(stripDebug())
-        .pipe(gulpif(condition, uglify({mangle: {reserved: ['require' ,'exports' ,'module' ,'$']}})))
+        .pipe(gulpif(condition,uglify({
+            mangle: {reserved: ['require', 'exports', 'module', '$']},
+            compress: {
+                drop_console: true,
+            }
+        })))
         .pipe(gulp.dest('public/static/js'));
 });
-gulp.task('clean:js', async() => {
+gulp.task('clean:js', async () => {
     await del([
         'public/static/css/**/*.scss',
         '!public/static/js/**/*.js',
