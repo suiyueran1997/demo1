@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<img id="previewContainer" style="width: 50%;"/>
 </body>
+<script>
+  const image = document.querySelector("#previewContainer");
+fetch('https://avatar-static.segmentfault.com/202/841/2028414822-5ee1d794a820a_huge128').then((res)=> res = res.blob())
+        .then((blob)=>{
+  const img = URL.createObjectURL(blob)
+          image.src = img
+})
+</script>
 </html>
