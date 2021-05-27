@@ -1,0 +1,129 @@
+/* 
+  == Variables ==
+  Variables are declared using the $ sign in front of the variable name.
+*/
+
+/* 
+declaration of $font-stack and $primary-color. 
+Notice how these are declared using a simple CSS like syntax  
+*/
+$bg-color: #ccc;
+
+body {
+    background-color: $bg-color;
+}
+
+/*
+  == Nesting ==
+  We can nest declaration like HTML and SCSS will automatically process and generate the desired CSS.
+  The preprocessor will create a set of selectors that will have the common properties and then add/override selector specific properties.
+ */
+
+div.mod {
+    background : red;
+
+    /* ul nested inside nav */
+    section {
+        margin: 0;
+        padding: 0;
+
+        /* ul nested inside section */
+        ul {
+            list-style: none;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+
+    }
+
+    a {
+        color: #ccc;
+        font-weight: bold;
+    }
+
+}
+
+/*
+  ==Partials==
+  Partials are like the include files.
+  These are used to modularize the CSS code.
+  Partials must be created in files with names starting with an underscore for example; _reset.scss
+  SCSS uses the "_" to determine if the file is a partial.
+  We use the @import directive to import partials.
+  For example,
+  import 'filename';
+ */
+
+
+/*
+==Mixins==
+Mixin is created when we combine the properties of two or more objects.
+A good use of mixin in CSS would be to use it for the new CSS3 vendor prefixes.
+Mixins are declared using the "@mixin" declarative.
+Mixins can be called using the "@include" declarative.
+ */
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.box {
+    border: 1px solid #ddd;
+    @include border-radius(10px);
+}
+
+.big-box {
+    @include border-radius(40px);
+}
+
+
+/*
+==Extend/Inheritance==
+Works just like classical inheritance.
+(1) Create a base css selector with a base set of properties.
+(2) Use the "@extend" declarative Extend/Inherit the base class to create the Sub class/Child class.
+ */
+
+.human {
+    border: 1px solid #ccc;
+}
+
+
+.alysson {
+    @extend .human;
+    padding: 20px;
+}
+
+.umesh {
+    @extend .human;
+    padding: 30px;
+}
+
+
+/*
+==Mathematical Operators==
+Sass allows us to do simple mathematical operations like +, -, /, *, % etc.
+ */
+
+$width: 200;
+
+.box {
+    width: $width * 1px;
+}
+
+.big-box {
+    width: $width * 2px;
+}
+
+.bigger-box {
+    width: $width * 3 + 22px;
+}
+
+.small-box {
+    width: ($width * 3)/20 * 1px;
+}

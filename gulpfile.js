@@ -38,6 +38,13 @@ gulp.task('js', function () {
         })))
         .pipe(gulp.dest('public/static/js'));
 });
+gulp.task('css',function (){
+    return gulp.src('public/static/css/**/*.css')
+        .pipe(rev())
+        .pipe(gulp.dest('public/static/css'))
+        .pipe(rev.manifest())            //生成rev-mainfest.json文件作为记录
+        .pipe(gulp.dest('public/static/css'));
+})
 gulp.task('clean:js', async () => {
     await del([
         'public/static/css/**/*.scss',
@@ -46,7 +53,7 @@ gulp.task('clean:js', async () => {
     ]);
 
 })
-gulp.task('default', gulp.series(gulp.parallel('scss', 'js'), 'clean:js'));
+gulp.task('default', gulp.series(gulp.parallel('scss', 'js'), 'clean:js','css'));
 
 // gulp.task('watch', function() {
 //     gulp.watch('static/**/*.{js,scss}').on('change', function(e) {
